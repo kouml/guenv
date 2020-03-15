@@ -73,6 +73,7 @@ def activate(config_name):
         print('activate with {}'.format(config_name))
     else:
         print('not exist "{}" in user list'.format(config_name))
+    set_gitconfig()
 
 @cli.command()
 def replace():
