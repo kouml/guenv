@@ -1,6 +1,6 @@
 import json
 
-CONFIG_PATH = 'config_all.json'
+CONFIG_PATH = 'config.json'
 ACTIVATE_PATH = 'activate'
 
 
@@ -25,21 +25,21 @@ def load_config():
     return activated_config, config_list
 
 
-# git env
-def git_config_set():
+def _gitconfig_set():
     activated_config, config_list = load_config()
     user_name = config_list[activated_config]['user_name']
     email = config_list[activated_config]['email']
 
 
-def my_decorator(func):
+
+def gitconfig_setter(func):
     def wrapper():
         func()
-        git_config_set()
+        _gitconfig_set()
     return wrapper
 
 
-@my_decorator
-def say_whee():
-    print("Whee!")
+# @gitconfig_setter
+# def say_whee():
+#     print("Whee!")
 
