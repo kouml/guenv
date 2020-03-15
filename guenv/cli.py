@@ -15,7 +15,7 @@ def cli(ctx):
 @click.argument('config_name')
 def new(config_name):
     if config_name in config_list.keys():
-        print('already exist "{}" in user list '.format(config_name))
+        print('already exist [{}] in user list '.format(config_name))
     else:
         print('user_name: ', end='')
         user_name = input()
@@ -30,15 +30,15 @@ def new(config_name):
 @click.argument('config_name')
 def edit(config_name):
     if config_name in config_list.keys():
-        print('user_name(now:{}pri): '.format(config_list[config_name]['user_name']), end='')
+        print('user_name(now:[{}]): '.format(config_list[config_name]['user_name']), end='')
         user_name = input()
-        print('email(now:{}): '.format(config_list[config_name]['email']), end='')
+        print('email(now:[{}]): '.format(config_list[config_name]['email']), end='')
         email = input()
         config_list[config_name] = {"user_name": user_name, "email": email}
         save_config(config_list)
-        print('edited {}'.format(config_name))
+        print('edited [{}]'.format(config_name))
     else:
-        print('not exist "{}" in user list '.format(config_name))
+        print('not exist [{}] in user list '.format(config_name))
 
 
 @cli.command()
@@ -49,13 +49,13 @@ def remove(config_name):
         save_config(config_list)
         print('deleted {}'.format(config_name))
     else:
-        print('Error: not exist {} in user list'.format(config_name))
+        print('Error: not exist [{}] in user list'.format(config_name))
 
 
 @cli.command()
 def list():
     if activated_config not in config_list.keys():
-        print('Error: activated user "{}" is not exist in user list'.format(activated_config))
+        print('Error: activated user [{}] is not exist in user list'.format(activated_config))
     print('----guenv list---')
     for k, v in config_list.items():
         if activated_config == k:
@@ -70,14 +70,15 @@ def list():
 def activate(config_name):
     if config_name in config_list.keys():
         save_activate(config_name)
-        print('activate with {}'.format(config_name))
+        print('activate with [{}]'.format(config_name))
     else:
-        print('not exist "{}" in user list'.format(config_name))
+        print('not exist [{}] in user list'.format(config_name))
     set_gitconfig()
 
-@cli.command()
-def replace():
-    click.echo('The subcommand')
+# TODO: implement in future
+# @cli.command()
+# def replace():
+#     click.echo('The subcommand')
 
 
 if __name__ == "__main__":

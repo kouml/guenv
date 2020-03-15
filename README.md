@@ -43,21 +43,21 @@ Commands:
   replace
 ```
 
-
+## guenv list
 ```
 $ guenv list
-[config_name1]
-hoge
-hoge@example.com
-
-*[config_name1]
-fuga
-fuga@example.com
+----guenv list---
+  [user_hoge]
+  user_name:hoge
+  email:hoge@example.com
+* [user_fuga]
+  user_name:fuga
+  email:fuga@example.com
 ```
 
 ```
 $ guenv activate {config_name1}
-active user is [].
+activate with [user_hoge]
 ```
 
 ```
@@ -77,3 +77,4 @@ $ guenv edit
 $ guenv remove {config_name1}
 removed [].
 ```
+python3
