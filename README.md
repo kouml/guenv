@@ -77,4 +77,3 @@ $ guenv edit
 $ guenv remove {config_name1}
 removed [].
 ```
-python3
