@@ -2,8 +2,11 @@ import os
 import json
 import subprocess
 
-CONFIG_PATH = 'config.json'
-ACTIVATE_PATH = 'activate'
+default_dir = os.path.dirname(__file__)
+os.makedirs(os.path.join(default_dir, '..', 'guenv'), exist_ok=True)
+
+CONFIG_PATH = os.path.join(default_dir, '..', 'config.json')
+ACTIVATE_PATH = os.path.join(default_dir, '..', 'activate')
 
 
 def save_config(config_list):

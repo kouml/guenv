@@ -56,14 +56,17 @@ def remove(config_name):
 def list():
     if activated_config not in config_list.keys():
         print('Error: activated user [{}] is not exist in user list'.format(activated_config))
-    print('----guenv list---')
-    for k, v in config_list.items():
-        if activated_config == k:
-            print("* [{}]".format(k))
-        else:
-            print("  [{}]".format(k))
-        for l, m in v.items():
-            print("  {}:{}".format(l, m))
+    if len(config_list) == 0:
+        print('Error: need add config with following command \n guenv add \{config_name\}')
+    else:
+        print('----guenv list---')
+        for k, v in config_list.items():
+            if activated_config == k:
+                print("* [{}]".format(k))
+            else:
+                print("  [{}]".format(k))
+            for l, m in v.items():
+                print("  {}:{}".format(l, m))
 
 @cli.command()
 @click.argument('config_name')
@@ -74,6 +77,7 @@ def activate(config_name):
     else:
         print('not exist [{}] in user list'.format(config_name))
     set_gitconfig()
+
 
 # TODO: implement in future
 # @cli.command()
