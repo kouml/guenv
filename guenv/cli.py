@@ -58,7 +58,6 @@ def list():
     if activated_config not in config_list.keys():
         if not activated_config:
             print('Error: activated user is empty. execute following command \n guenv activate {config_name}')
-            return
         else:
             print('Error: activated user [{}] is not exist in user list'.format(activated_config))
     print('----guenv list---')
