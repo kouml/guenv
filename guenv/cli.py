@@ -25,7 +25,6 @@ def add(config_name):
         save_config(config_list)
         print('added {}'.format(config_name))
 
-
 @cli.command()
 @click.argument('config_name')
 def edit(config_name):
@@ -39,7 +38,7 @@ def edit(config_name):
         print('edited [{}]'.format(config_name))
     else:
         print('not exist [{}] in user list '.format(config_name))
-
+    set_gitconfig(activated_config, config_list)
 
 @cli.command()
 @click.argument('config_name')
@@ -50,7 +49,6 @@ def delete(config_name):
         print('deleted {}'.format(config_name))
     else:
         print('Error: not exist [{}] in user list'.format(config_name))
-
 
 @cli.command()
 def list():
@@ -63,7 +61,6 @@ def list():
             return
         else:
             print('Error: activated user [{}] is not exist in user list'.format(activated_config))
-            return
     print('----guenv list---')
     for k, v in config_list.items():
         if activated_config == k:
@@ -79,9 +76,10 @@ def activate(config_name):
     if config_name in config_list.keys():
         save_activate(config_name)
         print('activate with [{}]'.format(config_name))
+        activated_config = config_name
     else:
         print('not exist [{}] in user list'.format(config_name))
-    set_gitconfig()
+    set_gitconfig(activated_config, config_list)
 
 
 # TODO: implement in future

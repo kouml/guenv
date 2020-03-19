@@ -41,8 +41,7 @@ def load_config():
     return activated_config, config_list
 
 
-def set_gitconfig():
-    activated_config, config_list = load_config()
+def set_gitconfig(activated_config, config_list):
     user_name = config_list[activated_config]['user_name']
     email = config_list[activated_config]['email']
 
