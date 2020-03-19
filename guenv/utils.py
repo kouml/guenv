@@ -1,12 +1,13 @@
 import os
 import json
+from json.decoder import JSONDecodeError
 import subprocess
 
 default_dir = os.path.dirname(__file__)
-os.makedirs(os.path.join(default_dir, '..', 'guenv'), exist_ok=True)
+os.makedirs(os.path.join(default_dir, 'guenv'), exist_ok=True)
 
-CONFIG_PATH = os.path.join(default_dir, '..', 'config.json')
-ACTIVATE_PATH = os.path.join(default_dir, '..', 'activate')
+CONFIG_PATH = os.path.join(default_dir, 'config.json')
+ACTIVATE_PATH = os.path.join(default_dir, 'activate')
 
 
 def save_config(config_list):
@@ -25,11 +26,14 @@ def load_config():
             activated_config = f.read().strip()
     else:
         with open(ACTIVATE_PATH, 'a') as f:
-            activated_config = ""
+            activated_config = ''
 
     if os.path.isfile(CONFIG_PATH):
         with open(CONFIG_PATH, 'r') as f:
-            config_list = json.load(f)
+            try:
+                config_list = json.load(f)
+            except JSONDecodeError:
+                config_list = {}
     else:
         with open(CONFIG_PATH, 'a') as f:
             config_list = {}
