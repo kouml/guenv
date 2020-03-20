@@ -53,3 +53,33 @@ def set_gitconfig(activated_config, config_list):
                         stdout=subprocess.PIPE,
                         stderr=subprocess.STDOUT)
 
+
+def replace_by_other_user(old_config, new_config, config_list):
+    replace_command = \
+    "'OLD_EMAIL={}\n".format(old_config["email"]) + \
+    "CORRECT_NAME={}\n".format(new_config["user_name"]) + \
+    "CORRECT_EMAIL={}\n".format(new_config["email"]) + \
+    'if ["$GIT_COMMITTER_EMAIL"="$OLD_EMAIL"]\n' + \
+    'then\n' + \
+    '    export GIT_COMMITTER_NAME="$CORRECT_NAME"\n' + \
+    '    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"\n' + \
+    'fi\n' + \
+    'if ["$GIT_AUTHOR_EMAIL"="$OLD_EMAIL"]\n' + \
+    'then\n' + \
+    '    export GIT_AUTHOR_NAME="$CORRECT_NAME"\n' + \
+    '    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"\n' + \
+    "fi'"
+
+    print(replace_command)
+
+    replace = ['git', 'filter-branch', '--env-filter',
+               replace_command,
+               '--tag-name-filter cat - - --branches - -tags'
+               ]
+
+    print(replace)
+    replace = subprocess.Popen(replace,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT)
+    print(replace)
+
