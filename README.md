@@ -17,7 +17,7 @@ $ pip install guenv
 
 # Usage
 
-## 1. swtich guenv
+## 1. Switch Git User environemnt
 ```
 $ guenv add {example1}
 $ guenv list
@@ -25,24 +25,49 @@ $ guenv activate {example1}
 ```
 
 After guenv activate, You can commit with {example1} config.
-
+<!--
 ## 2. replace previous commit
 ```
 $ guenv replace {example1}
 ```
 
 guenv replace can rewrite the previous commiter and author.
-
+ -->
 
 # Commands Usage
 ```
 Commands:
-  activate
-  edit
-  list
-  new
-  remove
-  replace
+  activate  Activate git user environment
+  add       Add a specific git user environment
+  delete    Delete a specific git user environment
+  edit      Edit a specific git user environment
+  list      List all git user environment available to guenv
+```
+
+## guenv activate
+```
+$ guenv activate {config_name1}
+activate with [config_name1]
+```
+
+## guenv add
+```
+$ guenv add {config_name1}
+added [config_name1].
+```
+
+## guenv delete
+```
+$ guenv delete {config_name1}
+deleted [config_name1].
+```
+
+## guenv edit
+```
+$ guenv edit [config_name1]
+user_name(now:[old_name]): [new_name]
+email(now:[old_email]): [new_email]
+edited [config_name1]
 ```
 
 ## guenv list
@@ -55,27 +80,4 @@ $ guenv list
 * [user_fuga]
   user_name:fuga
   email:fuga@example.com
-```
-
-```
-$ guenv activate {config_name1}
-activate with [user_hoge]
-```
-
-```
-$ guenv replace {config_name1} {config_name2}
-```
-
-
-```
-$ guenv new
-```
-
-```
-$ guenv edit
-```
-
-```
-$ guenv remove {config_name1}
-removed [].
 ```
