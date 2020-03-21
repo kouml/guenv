@@ -9,11 +9,13 @@ activated_config, config_list = load_config()
 @click.group(invoke_without_command=False)
 @click.pass_context
 def cli(ctx):
+    """Simple git user environment management tools"""
     pass
 
 @cli.command()
 @click.argument('config_name')
 def add(config_name):
+    """Add a specific git user environment"""
     if config_name in config_list.keys():
         print('already exist [{}] in user list '.format(config_name))
     else:
@@ -28,6 +30,7 @@ def add(config_name):
 @cli.command()
 @click.argument('config_name')
 def edit(config_name):
+    """Edit a specific git user environment"""
     if config_name in config_list.keys():
         print('user_name(now:[{}]): '.format(config_list[config_name]['user_name']), end='')
         user_name = input()
@@ -43,6 +46,7 @@ def edit(config_name):
 @cli.command()
 @click.argument('config_name')
 def delete(config_name):
+    """Delete a specific git user environment"""
     if config_name in config_list.keys():
         del config_list[config_name]
         save_config(config_list)
@@ -52,6 +56,7 @@ def delete(config_name):
 
 @cli.command()
 def list():
+    """List all git user environment available to guenv"""
     if len(config_list) == 0:
         print('Error: need config with following command \n guenv add {config_name}')
         return
@@ -72,6 +77,7 @@ def list():
 @cli.command()
 @click.argument('config_name')
 def activate(config_name):
+    """Activate git user environment"""
     if config_name in config_list.keys():
         save_activate(config_name)
         print('activate with [{}]'.format(config_name))
@@ -82,11 +88,11 @@ def activate(config_name):
 
 
 # TODO: implement in future
-@cli.command()
-@click.argument('old_config')
-@click.argument('new_config')
-def replace(old_config, new_config):
-    replace_by_other_user(old_config, new_config, config_list)
+# @cli.command()
+# @click.argument('old_config')
+# @click.argument('new_config')
+# def replace(old_config, new_config):
+#     replace_by_other_user(old_config, new_config, config_list)
 
 if __name__ == "__main__":
     cli()
