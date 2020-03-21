@@ -2,7 +2,9 @@
 guenv is the simplest git user environemnt management tools.
 Mainly, It has 2 features.
 1. easily switch to git user like "pyenv"or "rbenv"
-2. easily replace git user in previous commit
+2. ~~easily replace git user in previous commit~~
+
+![guenv example](guenv_example.png)
 
 # Requirements
 Python (3.2<=)
