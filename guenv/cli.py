@@ -25,7 +25,7 @@ def add(config_name):
         email = input()
         config_list[config_name] = {"user_name": user_name, "email": email}
         save_config(config_list)
-        print('added {}'.format(config_name))
+        print('added [{}]'.format(config_name))
 
 @cli.command()
 @click.argument('config_name')
@@ -50,7 +50,7 @@ def delete(config_name):
     if config_name in config_list.keys():
         del config_list[config_name]
         save_config(config_list)
-        print('deleted {}'.format(config_name))
+        print('deleted [{}]'.format(config_name))
     else:
         print('Error: not exist [{}] in user list'.format(config_name))
 
@@ -58,11 +58,11 @@ def delete(config_name):
 def list():
     """List all git user environment available to guenv"""
     if len(config_list) == 0:
-        print('Error: need config with following command \n guenv add {config_name}')
+        print('Error: need config with following command \n guenv add [{config_name}]')
         return
     if activated_config not in config_list.keys():
         if not activated_config:
-            print('Error: activated user is empty. execute following command \n guenv activate {config_name}')
+            print('Error: activated user is empty. execute following command \n guenv activate [{config_name}]')
         else:
             print('Error: activated user [{}] is not exist in user list'.format(activated_config))
     print('----guenv list---')

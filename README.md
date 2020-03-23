@@ -19,16 +19,16 @@ $ pip install guenv
 
 ## 1. Switch Git User environemnt
 ```
-$ guenv add {example1}
+$ guenv add [example1]
 $ guenv list
-$ guenv activate {example1}
+$ guenv activate [example1]
 ```
 
-After guenv activate, You can commit with {example1} config.
+After guenv activate, You can commit with [example1] config.
 <!--
 ## 2. replace previous commit
 ```
-$ guenv replace {example1}
+$ guenv replace [example1]
 ```
 
 guenv replace can rewrite the previous commiter and author.
@@ -46,19 +46,19 @@ Commands:
 
 ## guenv activate
 ```
-$ guenv activate {config_name1}
+$ guenv activate [config_name1]
 activate with [config_name1]
 ```
 
 ## guenv add
 ```
-$ guenv add {config_name1}
+$ guenv add [config_name1]
 added [config_name1].
 ```
 
 ## guenv delete
 ```
-$ guenv delete {config_name1}
+$ guenv delete [config_name1]
 deleted [config_name1].
 ```
 
