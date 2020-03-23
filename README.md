@@ -53,13 +53,13 @@ activate with [config_name1]
 ## guenv add
 ```
 $ guenv add [config_name1]
-added [config_name1].
+added [config_name1]
 ```
 
 ## guenv delete
 ```
 $ guenv delete [config_name1]
-deleted [config_name1].
+deleted [config_name1]
 ```
 
 ## guenv edit
