@@ -45,20 +45,20 @@ def set_gitconfig(activated_config, config_list):
     user_name = config_list[activated_config]['user_name']
     email = config_list[activated_config]['email']
 
-    name_out = subprocess.Popen(['git', 'config', '--global', 'user.name', user_name],
+    name_out = subprocess.run(['git', 'config', '--global', 'user.name', user_name],
                         stdout=subprocess.PIPE,
                         stderr=subprocess.STDOUT)
 
-    email_out = subprocess.Popen(['git', 'config', '--global', 'user.email', email],
+    email_out = subprocess.run(['git', 'config', '--global', 'user.email', email],
                         stdout=subprocess.PIPE,
                         stderr=subprocess.STDOUT)
 
 
 def replace_by_other_user(old_config, new_config, config_list):
     replace_command = \
-    "'OLD_EMAIL={}\n".format(old_config["email"]) + \
-    "CORRECT_NAME={}\n".format(new_config["user_name"]) + \
-    "CORRECT_EMAIL={}\n".format(new_config["email"]) + \
+    "'OLD_EMAIL={}\n".format(config_list[old_config]["email"]) + \
+    "CORRECT_NAME={}\n".format(config_list[new_config]["user_name"]) + \
+    "CORRECT_EMAIL={}\n".format(config_list[new_config]["email"]) + \
     'if ["$GIT_COMMITTER_EMAIL"="$OLD_EMAIL"]\n' + \
     'then\n' + \
     '    export GIT_COMMITTER_NAME="$CORRECT_NAME"\n' + \
@@ -70,16 +70,18 @@ def replace_by_other_user(old_config, new_config, config_list):
     '    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"\n' + \
     "fi'"
 
-    print(replace_command)
+    # print(replace_command)
 
     replace = ['git', 'filter-branch', '--env-filter',
                replace_command,
                '--tag-name-filter cat - - --branches - -tags'
                ]
 
-    print(replace)
-    replace = subprocess.Popen(replace,
+    # print(replace)
+    replace = subprocess.run(replace,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.STDOUT)
-    print(replace)
+    print(replace.stdout.decode("utf-8"), end="")
+    # print(replace)
+
 
