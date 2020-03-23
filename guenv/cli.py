@@ -88,11 +88,11 @@ def activate(config_name):
 
 
 # TODO: implement in future
-@cli.command()
-@click.argument('old_config')
-@click.argument('new_config')
-def replace(old_config, new_config):
-    replace_by_other_user(old_config, new_config, config_list)
+# @cli.command()
+# @click.argument('old_config')
+# @click.argument('new_config')
+# def replace(old_config, new_config):
+#     replace_by_other_user(old_config, new_config, config_list)
 
 if __name__ == "__main__":
     cli()
