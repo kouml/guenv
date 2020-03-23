@@ -74,7 +74,7 @@ def replace_by_other_user(old_config, new_config, config_list):
 
     replace = ['git', 'filter-branch', '--env-filter',
                replace_command,
-               '--tag-name-filter cat - - --branches - -tags'
+               '--tag-name-filter', 'cat', '--', '--branches', '--tags'
                ]
 
     # print(replace)
