@@ -83,6 +83,10 @@ def replace_by_other_user(old_config, new_config, config_list):
                         stderr=subprocess.STDOUT)
     print(replace.returncode)
     print(replace.stdout.decode("utf-8"), end="")
+    if replace.stderr is None:
+        pass
+    else:
+        print(replace.stderr.decode("utf-8"), end="")
     # print(replace)
 
 
