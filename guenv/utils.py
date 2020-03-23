@@ -59,12 +59,12 @@ def replace_by_other_user(old_config, new_config, config_list):
     "'OLD_EMAIL={}\n".format(config_list[old_config]["email"]) + \
     "CORRECT_NAME={}\n".format(config_list[new_config]["user_name"]) + \
     "CORRECT_EMAIL={}\n".format(config_list[new_config]["email"]) + \
-    'if ["$GIT_COMMITTER_EMAIL"="$OLD_EMAIL"]\n' + \
+    'if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]\n' + \
     'then\n' + \
     '    export GIT_COMMITTER_NAME="$CORRECT_NAME"\n' + \
     '    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"\n' + \
     'fi\n' + \
-    'if ["$GIT_AUTHOR_EMAIL"="$OLD_EMAIL"]\n' + \
+    'if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]\n' + \
     'then\n' + \
     '    export GIT_AUTHOR_NAME="$CORRECT_NAME"\n' + \
     '    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"\n' + \
