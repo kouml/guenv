@@ -70,23 +70,19 @@ def replace_by_other_user(old_config, new_config, config_list):
     '    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"\n' + \
     "fi'"
 
-    print(replace_command)
-
     replace = ['git', 'filter-branch', '--env-filter',
                replace_command,
                '--tag-name-filter', 'cat', '--', '--branches', '--tags'
                ]
 
-    print(replace)
     replace = subprocess.run(replace,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.STDOUT)
-    print(replace.returncode)
-    print(replace.stdout.decode("utf-8"), end="")
+    if replace.stderr is None:
+        pass
+    else:
+        print(replace.stdout.decode("utf-8"), end="")
     if replace.stderr is None:
         pass
     else:
         print(replace.stderr.decode("utf-8"), end="")
-    # print(replace)
-
-
