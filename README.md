@@ -81,3 +81,9 @@ $ guenv list
   user_name:fuga
   email:fuga@example.com
 ```
+
+
+## guenv_replace
+```
+guenv_replace [old@example.com] [new_user_name] [new@example.com]
+```
