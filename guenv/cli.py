@@ -65,14 +65,14 @@ def list():
             print('Error: activated user is empty. execute following command \n guenv activate [{config_name}]')
         else:
             print('Error: activated user [{}] is not exist in user list'.format(activated_config))
-    print('----guenv list---')
+    print('guenv list'.center(20, '-'))
     for k, v in config_list.items():
         if activated_config == k:
-            print("* [{}]".format(k))
+            print('* [{}]'.format(k))
         else:
-            print("  [{}]".format(k))
+            print('  [{}]'.format(k))
         for l, m in v.items():
-            print("  {}:{}".format(l, m))
+            print('  {}:{}'.format(l, m))
 
 @cli.command()
 @click.argument('config_name')
